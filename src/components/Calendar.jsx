@@ -88,15 +88,15 @@ const Calendar = ({highlight, color}) =>
 				</h1>
 				<div className="flex flex-col">
 					<div className='mt-16'>
-						<h1 className='text-gray-600 text-sm syne uppercase'>Scheduled Checkins</h1>
+						<h1 className='text-gray-600 text-sm bold uppercase tracking-widest'>Scheduled Checkins</h1>
 						<h1 className={`text-${color}-dark text-5xl`}>{lastDateOfCurrentMonth}</h1>
 					</div>
 					<div className='mt-16'>
-						<h1 className='text-gray-600 text-sm syne uppercase'>Completed Checkins</h1>
+						<h1 className='text-gray-600 text-sm bold uppercase tracking-widest'>Completed Checkins</h1>
 						<h1 className={`text-${color}-dark text-5xl`}>{currentMonthCheckins.length}</h1>
 					</div>
 					<div className='mt-16'>
-						<h1 className='text-gray-600 text-sm syne uppercase'>Completion Rate</h1>
+						<h1 className='text-gray-600 text-sm bold uppercase tracking-widest'>Completion Rate</h1>
 						<h1 className={`text-${color}-dark text-5xl`}>{Math.round((currentMonthCheckins.length/lastDateOfCurrentMonth)*100)}%</h1>
 					</div>
 				</div>

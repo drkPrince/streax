@@ -2,14 +2,37 @@ import useCollection from '../hooks/useCollection'
 import Habit from '../components/Habit'
 import {db} from '../firebase/fbConfig'
 import {motion} from 'framer-motion'
-import {useState} from 'react'
 import { Dialog } from "@reach/dialog";
 import "@reach/dialog/styles.css";
 
+import {useState, useEffect} from 'react'
+
+
+import {
+    Listbox,
+    ListboxOption,
+} from "@reach/listbox";
+
 const Habits = ({user, modal, setModal}) => 
 {
+    const [completed, setCompleted] = useState(null)
     
     const habits = useCollection(`users/${user.uid}/habits`)
+
+    useEffect(() => {
+        if(habits){
+            let completed = 0
+            habits.forEach(h => {
+                const dates = h.completedOn
+                const actualDates = dates.map(a => a.seconds)
+                const today = new Date().setHours(0, 0, 0, 0)/1000
+                if(actualDates.includes(today)){
+                    completed++
+                }
+            })
+            setCompleted(completed)
+        }
+    }, [habits])
 
     const habitsVariant = {
         hidden: {x: -1000, opacity: 0},
@@ -21,7 +44,6 @@ const Habits = ({user, modal, setModal}) =>
         setModal(false)
         const habitName = e.target.elements.habitName.value
         const color = e.target.elements.color.value
-        console.log(color)
         db.collection(`users/${user.uid}/habits`)
             .add({name: habitName, completedOn: [], color})
     }
@@ -29,31 +51,48 @@ const Habits = ({user, modal, setModal}) =>
     return habits ? (
         <>  
             <motion.div className="flex flex-col justify-around mt-8" variants={habitsVariant} animate='visible' initial='hidden'>
-                <div className='bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-3 fixed bottom-8 right-16 rounded-full cursor-pointer' onClick={()=>setModal(!modal)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="rgba(255,255,255,1)"/></svg>
-                </div>
-                <Dialog isOpen={modal} onDismiss={()=>setModal(false)} style={{background: '#111'}} className='rounded bg-black '>
+                <Dialog isOpen={modal} onDismiss={()=>setModal(false)} style={{background: '#111'}} className='rounded' aria-labelledby='add a new habit'>
                     <form onSubmit={addHabit} className='px-12 py-4'>
-                        <h2 className='text-3xl text-gray-400'>Add a new habit</h2>
-                        <input type="text" name='habitName' className='h-8 w-64 block my-3 px-2 outline-none'/>
-                        <label htmlFor="color" className='text-gray-300 mr-3'>Choose a color: </label>
-                        <select name="color" id='color'>
-                            <option>red</option>
-                            <option>indigo</option>
-                            <option>green</option>
-                        </select>
-                        <button type='submit' className='bg-green-500 py-1 px-2 text-white block my-4'>Add</button>
-                        <button className='bg-red-500 py-1 px-2 text-white block' onClick={()=>setModal(false)}>Cancel</button>
+                        <h2 className='text-4xl bold text-gray-100'>Add a new habit</h2>
+
+                        <input minLength='3' required maxLength='20' type="text" name='habitName' placeholder='Enter a habit name' className='h-8 w-full block px-4 outline-none rounded-sm bg-white placeholder-gray-700 mt-12 '/>
+
+                        <div className='mt-6'>
+                            <label htmlFor="color" className='text-gray-300'>Choose a color: </label>
+                            <Listbox defaultValue="indigo" className='flex capitalize rounded-sm' name='color'>
+                                {['red', 'indigo', 'green'].map(c => 
+                                    <ListboxOption key={c} value={c} className='flex'>
+                                        <div className={`w-8 h-8 bg-${c}-dark rounded-full`}></div>
+                                        <h3 className='ml-2 capitalize'>{c}</h3>
+                                    </ListboxOption>)
+                                }
+                            </Listbox>
+                        </div>
+                        <div className="flex justify-end space-x-3 mt-8">
+                            <button type='submit' className='bg-indigo-800 py-1 px-3 text-white rounded-full'>Add new</button>
+                            <button className='border border-red-600 py-1 px-3 text-red-600 rounded-full' onClick={()=>setModal(false)}>Cancel</button>
+                        </div>
                     </form>
                 </Dialog>
+                <p className='text-2xl text-center text-white mb-8'>{completed} out of {habits.length} habits checked in for today</p>
                 {habits.map(habit => <Habit habit={habit} user={user} key={habit.name}/>)}
             </motion.div>
             
         </>
     ) 
-    : null
+    : <Loader />
 }
 
 
+
+
+const Loader = () => {
+    return (
+        <div class="spinner">
+          <div class="cube1"></div>
+          <div class="cube2"></div>
+        </div>
+    )
+}
 
 export default Habits

@@ -5,28 +5,35 @@ import {motion} from 'framer-motion'
 import {Link} from 'react-router-dom'
 
 
+import Tooltip from "@reach/tooltip";
+import "@reach/tooltip/styles.css";
+
 const Habit = ({habit, user}) => 
 {
 	const {dates, streak, cleanDates} = renderDates(habit.completedOn, habit.color)
 
     const variant = {
         hidden: {x: -200, opacity: 0},
-        visible: {x: 0, opacity: 1, transition: {type: 'tween', ease: 'easeOut'}},
+        visible: {x: 0, opacity: 1, transition: {type: 'tween', ease: 'easeOut'}}
     }
 
 	return (
 		<motion.div className={`mb-6 shadow-md px-6 py-5 border-l-2 border-${habit.color}-dark rounded-sm`} variants={variant} style={{background: 'var(--sec-bg)'}}>
-            <div className='flex justify-between  mb-2'>
+            <div className='flex items-center  mb-2'>
                 <Link to={{pathname: `/${habit.name}`, state: {...habit, ...streak, userid: user.uid} }} >
-                    <span className='flex items-center text-2xl text-transparent bg-clip-text bg-gradient-to-r from-red-100 to-blue-100 bold'>
+                    <span className=' text-2xl text-transparent bg-clip-text bg-gradient-to-r from-red-100 to-blue-100 bold'>
                         {habit.name}
-                        <span>
-                            {(streak.currentStreak===streak.longestStreak) && streak.currentStreak!==0? 
-                                <svg className="w-5 h-5 ml-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                                : ''}
-                        </span>
                     </span>
                 </Link>
+                <div>
+                    {(streak.currentStreak===streak.longestStreak) && streak.currentStreak!==0
+                        ? 
+                        <Tooltip label="This is your best streak yet. Keep going!">
+                            <svg className="w-5 h-5 ml-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        </Tooltip>
+                        :
+                         ''}
+                </div>
             </div>
             <div className="grid gap-x-16 grid-cols-12">
                 <div className='flex justify-between col-span-10 '>
