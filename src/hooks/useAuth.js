@@ -23,7 +23,7 @@ const useAuth = () =>
 
     const handleSignIn = async () => {
         const provider = new firebase.auth.GoogleAuthProvider();    
-        await firebase.auth().signInWithPopup(provider)
+        await firebase.auth().signInWithRedirect(provider)
     }
 
     return [user, logOut, handleSignIn]

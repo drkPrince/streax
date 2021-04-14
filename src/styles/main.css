@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&display=swap');
 
+
+:root{
+	--main-bg: #09090c;
+	--sec-bg: #060607;
+
+	--sec-bg: #010107;
+	
+}	
+
+
 @font-face {
 	src: url('../assets/Gilroy-Light.otf');
 	font-family: 'gilroy';

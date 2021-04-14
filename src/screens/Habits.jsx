@@ -6,9 +6,9 @@ import {useState} from 'react'
 import { Dialog } from "@reach/dialog";
 import "@reach/dialog/styles.css";
 
-const Habits = ({user}) => 
+const Habits = ({user, modal, setModal}) => 
 {
-    const [modal, setModal] = useState(false)
+    
     const habits = useCollection(`users/${user.uid}/habits`)
 
     const habitsVariant = {
@@ -25,7 +25,6 @@ const Habits = ({user}) =>
         db.collection(`users/${user.uid}/habits`)
             .add({name: habitName, completedOn: [], color})
     }
-
     
     return habits ? (
         <>  
@@ -52,35 +51,9 @@ const Habits = ({user}) =>
             
         </>
     ) 
-    : <Skeleton />
+    : null
 }
 
 
-
-
-
-const Skeleton = () => {
-    return (
-        <div className='flex flex-col mt-12 h-screen'>
-            <div className='w-full h-24 bg-gray-900 animate-pulse rounded px-6 py-3'>
-                <div className='bg-black w-40 h-3 animate-pulse rounded'></div>
-                <div className='bg-black w-full h-7 animate-pulse rounded mt-3'></div>
-            </div>
-            <div className='w-full h-24 bg-gray-900 animate-pulse rounded px-6 py-3 mt-12'>
-                <div className='bg-black w-40 h-3 animate-pulse rounded'></div>
-                <div className='bg-black w-full h-7 animate-pulse rounded mt-3'></div>
-            </div>
-            <div className='w-full h-24 bg-gray-900 animate-pulse rounded px-6 py-3 mt-12'>
-                <div className='bg-black w-40 h-3 animate-pulse rounded'></div>
-                <div className='bg-black w-full h-7 animate-pulse rounded mt-3'></div>
-            </div>
-            <div className='w-full h-24 bg-gray-900 animate-pulse rounded px-6 py-3 mt-12'>
-                <div className='bg-black w-40 h-3 animate-pulse rounded'></div>
-                <div className='bg-black w-full h-7 animate-pulse rounded mt-3'></div>
-            </div>
-            
-        </div>
-    )
-}
 
 export default Habits

@@ -49,12 +49,15 @@ const Calendar = ({highlight, color}) =>
 
 	return (
 		<div className='grid grid-cols-12 gap-x-8'>
-			<div className='col-span-9 rounded py-5 px-8 text-center shadow-md' style={{background: '#060607'}}>
+			<div className='col-span-9 rounded py-5 px-8 text-center shadow-md' style={{background: 'var(--sec-bg)'}}>
 				<div className='my-3 text-2xl flex justify-between'>
 					<div className='text-sm text-gray-400 cursor-pointer' onClick={ () => setDate(new Date(date.setMonth(date.getMonth() - 1))) }>
 						<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" /></svg>
 					</div>
-					<h1 className='text-gray-800 font-bold tracking-widest text-base w-1/2'>{format(date, 'MMMM uuu')}</h1>
+					<h1 className='text-gray-600 bold tracking-wider text-base  flex text-center'>
+						<svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+						<span>{format(date, 'MMMM uuu')}</span>
+					</h1>
 					<div className='text-sm text-gray-400 cursor-pointer' onClick={ () => setDate(new Date(date.setMonth(date.getMonth() + 1))) }>
 						<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" /></svg>
 					</div>
@@ -78,8 +81,11 @@ const Calendar = ({highlight, color}) =>
 				</div>
 			</div>
 
-			<div className="col-span-3 px-8 py-8 rounded text-center shadow-md" style={{background: '#060607'}}>
-				<h1 className='text-gray-800 font-bold tracking-widest text-base'>Monthly Report</h1>
+			<div className="col-span-3 px-8 py-8 rounded text-center shadow-md" style={{background: 'var(--sec-bg)'}}>
+				<h1 className='text-gray-600 bold tracking-wider text-base flex justify-center'>
+					<svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+					Monthly Report
+				</h1>
 				<div className="flex flex-col">
 					<div className='mt-16'>
 						<h1 className='text-gray-600 text-sm syne uppercase'>Scheduled Checkins</h1>
