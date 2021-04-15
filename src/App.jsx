@@ -13,7 +13,7 @@ import {useState} from 'react'
 
 export default function App() 
 {
-    const [user, logOut, handleSignIn] = useAuth()   
+    const [user, logOut, signInWithGoogle, signInAnon] = useAuth()   
 
     const [modal, setModal] = useState(false)
 
@@ -56,11 +56,22 @@ export default function App()
     
     :
 
-    <div className='flex justify-center items-center h-screen bg-pink-50'>
-        <button className='text-white text-2xl px-4 py-2 rounded-full bg-blue-700' onClick={handleSignIn}>Sign in with Google</button>
-    </div>
+    <LoginScreen signInWithGoogle={signInWithGoogle} signInAnon={signInAnon}/>
         
 }
+
+
+
+const LoginScreen = ({signInWithGoogle, signInAnon}) => {
+    return (
+        <div className='flex justify-center items-center h-screen bg-pink-50'>
+            <button className='text-white text-2xl px-4 py-2 rounded-full bg-blue-700' onClick={signInWithGoogle}>Sign in with Google</button>
+            <button className='text-white text-2xl px-4 py-2 rounded-full bg-gray-700' onClick={signInAnon}>Continue as Guest</button>
+        </div>
+            
+    )
+}
+
 
 
 

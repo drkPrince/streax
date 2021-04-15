@@ -61,7 +61,7 @@ const Habits = ({user, modal, setModal}) =>
                         <div className='mt-6'>
                             <label htmlFor="color" className='text-gray-300'>Choose a color: </label>
                             <Listbox defaultValue="indigo" className='flex capitalize rounded-sm' name='color'>
-                                {['red', 'indigo', 'green'].map(c => 
+                                {['red', 'indigo', 'pink', 'orange', 'green'].map(c => 
                                     <ListboxOption key={c} value={c} className='flex'>
                                         <div className={`w-8 h-8 bg-${c}-dark rounded-full`}></div>
                                         <h3 className='ml-2 capitalize'>{c}</h3>
@@ -97,7 +97,7 @@ const Banner = ({completed, total, username}) =>
         return <p className='text-2xl text-center text-green-400 mb-8'>Noice!, All habits checked-in for today, {name}</p>
     }
     return (<p className='text-2xl text-center text-white mb-8'>
-                <span className='text-2xl'>{completed}</span> out of <span className='text-2xl'>{total}</span> <span className='text-gray-600'>habits checked in for today</span>
+                <span className='text-2xl'>{completed}</span> out of <span className='text-2xl'>{total}</span> <span className='text-gray-600'>habits checked-in for today.</span>
             </p>)
 }
 

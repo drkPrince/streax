@@ -4,11 +4,12 @@ import {firebase, db} from '../firebase/fbConfig'
 const useAuth = () => 
 {
     const [user, setUser] = useState(null)
+
     useEffect(() => 
     {   
         return firebase.auth().onAuthStateChanged(user => {
             if(user) {
-                const userDataToBeStored = {dp: user.photoURL, name: user.displayName, id: user.uid}
+                const userDataToBeStored = {name: user.displayName, id: user.uid}
                 db.collection('users')
                     .doc(user.uid)
                     .set(userDataToBeStored, {merge: true})
@@ -16,17 +17,42 @@ const useAuth = () =>
             }
             else setUser(null)
         })
-            
     }, [])
 
     const logOut = () => firebase.auth().signOut()
 
-    const handleSignIn = async () => {
+    const signInWithGoogle = async () => {
         const provider = new firebase.auth.GoogleAuthProvider();    
         await firebase.auth().signInWithRedirect(provider)
     }
 
-    return [user, logOut, handleSignIn]
+    const signInAnon = async () => {
+        const {user} = await firebase.auth().signInAnonymously()
+        makeHabitsForAnons(user.uid)
+    }
+
+
+    const makeHabitsForAnons = (uid) => {
+        const today = new Date()
+        const yesterday = new Date(today)
+        const superYesterday = new Date(today)
+
+        yesterday.setDate(yesterday.getDate() - 1)
+        superYesterday.setDate(yesterday.getDate() - 2)
+
+        const toBeAdded = [
+            {color: 'indigo', name: 'Leave a star on Github', completedOn: [new Date(new Date().setHours(0, 0, 0, 0)), new Date(yesterday.setHours(0, 0, 0, 0))]},
+            {color: 'red', name: 'Say Hi to me on Twitter', completedOn: [new Date(yesterday.setHours(0, 0, 0, 0))]},
+            {color: 'orange', name: 'Lose Yourself', completedOn: [new Date(superYesterday.setHours(0, 0, 0, 0))]},
+        ]
+
+        toBeAdded.forEach(t => {
+            db.collection(`users/${uid}/habits`)
+                .add(t)
+        })
+    }
+
+    return [user, logOut, signInWithGoogle, signInAnon]
     
 }
 

@@ -77,14 +77,16 @@ const renderDates = (completedDates, color) =>
                     : 
                     <div key={d} className='flex flex-col justify-center items-center mt-2 opacity-90'>
                         {day}
-                        <p className={`bg-${color}-dark rounded-full text-sm w-10 h-10 flex items-center justify-center text-white`}>
-                            {format(d, 'd')}
+                        <p className={`bg-${color}-dark rounded-full text-base w-10 h-10 flex items-center justify-center text-white`}>
+                            <span>{format(d, 'd')}</span>
                         </p>
                     </div>
             : 
                 <div key={d} className='flex flex-col justify-center items-center mt-2 opacity-95'>
                     {day}
-                    <p className={`border  border-${color}-dark text-gray-700 rounded-full text-sm w-10 h-10 flex items-center justify-center`}>{format(d, 'd')}</p>
+                    <p className={`border  border-${color}-dark text-gray-700 rounded-full text-base w-10 h-10 flex items-center justify-center`}>
+                        <span>{format(d, 'd')}</span>
+                    </p>
                 </div>
     })
     return {dates, streak, cleanDates}
