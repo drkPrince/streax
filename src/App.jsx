@@ -64,9 +64,18 @@ export default function App()
 
 const LoginScreen = ({signInWithGoogle, signInAnon}) => {
     return (
-        <div className='flex justify-center items-center h-screen bg-pink-50'>
-            <button className='text-white text-2xl px-4 py-2 rounded-full bg-blue-700' onClick={signInWithGoogle}>Sign in with Google</button>
-            <button className='text-white text-2xl px-4 py-2 rounded-full bg-gray-700' onClick={signInAnon}>Continue as Guest</button>
+        <div className="flex flex-col-reverse md:flex-row min-h-screen bg-gradient-to-bl from-red-100 to-indigo-100 pb-12">
+            <div className='w-full md:w-1/2 my-auto px-5 md:pl-12'>
+                <h3 style={{color: '#5222d0'}} className='text-3xl md:text-5xl bold'>Conquer your habits, Crush your goals.</h3>
+                <p className='mt-3 md:mt-5 text-base md:text-xl leading-relaxed text-gray-700'>We become what we repeatedly do. Streax helps you make better habit and break bad ones. It is based on the 'Don't break the chain' philosophy. </p>
+                <div className="flex text-white text-sm md:text-lg mt-7 md:mt-12 space-x-2">
+                    <button className='px-4 py-2 rounded-full border text-gray-900 border-gray-700 transform hover:-translate-y-1 transition-all duration-300' onClick={signInAnon}>Continue as Guest</button>
+                    <button className='px-4 py-2 rounded-full bg-blue-700 transform hover:-translate-y-1 transition-all duration-300' onClick={signInWithGoogle}>Sign in with Google</button>
+                </div>
+            </div>
+            <div className='w-full md:w-1/2 my-auto'>
+                <img src={require('./styles/success.png').default} alt="winning man" />
+            </div>
         </div>
             
     )
