@@ -22,9 +22,9 @@ export default function App()
             <BrowserRouter>
                 <Route exact path='/'>
                     <nav className="flex justify-between px-20 items-center pt-12 pb-3" >
-                        <h1 className='text-2xl bold text-transparent bg-clip-text tracking-wide bg-gradient-to-r from-green-500 to-gray-400 flex items-center '>
-                            ..strx..
-                            <svg className='fill-current text-green-400 mx-1' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="29"><path fill="none" d="M0 0H24V24H0z"/><path d="M21 3v2c0 9.627-5.373 14-12 14H5.243C5.08 19.912 5 20.907 5 22H3c0-1.363.116-2.6.346-3.732C3.116 16.974 3 15.218 3 13 3 7.477 7.477 3 13 3c2 0 4 1 8 0zm-8 2c-4.418 0-8 3.582-8 8 0 .362.003.711.01 1.046 1.254-1.978 3.091-3.541 5.494-4.914l.992 1.736C8.641 12.5 6.747 14.354 5.776 17H9c6.015 0 9.871-3.973 9.997-11.612-1.372.133-2.647.048-4.22-.188C13.627 5.027 13.401 5 13 5z"/></svg>
+                        <h1 className='text-2xl bold text-transparent bg-clip-text tracking-wide bg-gradient-to-r from-red-600 to-red-300 flex items-center '>
+                            strx...
+                            <svg className="w-6 h-6 text-red-600 mx-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clipRule="evenodd" /></svg>
                         </h1>
                         <div className="flex space-x-4">
                             <div className='flex hover:bg-green-900 transition-all duration-300 hover:text-white px-3 py-1 text-sm rounded-full text-gray-400 '>

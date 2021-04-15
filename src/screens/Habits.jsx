@@ -13,6 +13,7 @@ import {
     ListboxOption,
 } from "@reach/listbox";
 
+
 const Habits = ({user, modal, setModal}) => 
 {
     const [completed, setCompleted] = useState(null)
@@ -74,7 +75,7 @@ const Habits = ({user, modal, setModal}) =>
                         </div>
                     </form>
                 </Dialog>
-                <p className='text-2xl text-center text-white mb-8'>{completed} out of {habits.length} habits checked in for today</p>
+                <Banner total={habits.length} completed={completed} username={user.displayName || 'Captain'} />
                 {habits.map(habit => <Habit habit={habit} user={user} key={habit.name}/>)}
             </motion.div>
             
@@ -84,15 +85,34 @@ const Habits = ({user, modal, setModal}) =>
 }
 
 
+const Banner = ({completed, total, username}) => 
+{
+    const name = username.split(' ')[0]
+
+    if(completed === 0){
+        return <p className='text-2xl text-center text-yellow-800 mb-8'>No habits checked-in yet, {name}.</p>
+    }
+
+    else if(completed === total){
+        return <p className='text-2xl text-center text-green-400 mb-8'>Noice!, All habits checked-in for today, {name}</p>
+    }
+    return (<p className='text-2xl text-center text-white mb-8'>
+                <span className='text-2xl'>{completed}</span> out of <span className='text-2xl'>{total}</span> <span className='text-gray-600'>habits checked in for today</span>
+            </p>)
+}
+
+
+
 
 
 const Loader = () => {
     return (
-        <div class="spinner">
-          <div class="cube1"></div>
-          <div class="cube2"></div>
+        <div className="spinner">
+          <div className="cube1"></div>
+          <div className="cube2"></div>
         </div>
     )
 }
 
 export default Habits
+
