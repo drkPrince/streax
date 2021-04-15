@@ -52,7 +52,7 @@ const Habits = ({user, modal, setModal}) =>
         <>  
             <motion.div className="mt-3 md:mt-8" variants={habitsVariant} animate='visible' initial='hidden'>
                 <Dialog isOpen={modal} onDismiss={()=>setModal(false)} style={{background: '#111'}} className='rounded' aria-labelledby='add a new habit'>
-                    <form onSubmit={addHabit} className='px-4 md:px-12 py-4'>
+                    <form autoComplete='off' onSubmit={addHabit} className='px-4 md:px-12 py-4'>
                         <h2 className='text-3xl md:text-4xl bold text-gray-100'>Add a new habit</h2>
 
                         <input minLength='3' required maxLength='20' type="text" name='habitName' placeholder='Enter a habit name' className='h-8 w-full block px-4 outline-none rounded-sm bg-white placeholder-gray-700 mt-8 md:mt-12 '/>
@@ -93,10 +93,10 @@ const Banner = ({completed, total, username}) =>
     }
 
     else if(completed === total){
-        return <p className='text-green-400 text-center mb-8'>Noice!, All habits checked-in for today, {name}</p>
+        return <p className='text-green-400 text-center mb-8'>Gr8! Everything checked-in, {name}.</p>
     }
     return (<p className='text-white text-center mb-8'>
-                <span className=''>{completed}</span> out of <span className=''>{total}</span> <span className='text-gray-600'>habits checked-in for today.</span>
+                <span className=''>{completed}</span> out of <span className=''>{total}</span> <span className='text-gray-600'>habits checked-in.</span>
             </p>)
 }
 

@@ -13,7 +13,7 @@ const useAuth = () =>
                 db.collection('users')
                     .doc(user.uid)
                     .set(userDataToBeStored, {merge: true})
-                setUser(user)    
+                setUser(user) 
             }
             else setUser(null)
         })
@@ -22,11 +22,13 @@ const useAuth = () =>
     const logOut = () => firebase.auth().signOut()
 
     const signInWithGoogle = async () => {
+        setUser(false)
         const provider = new firebase.auth.GoogleAuthProvider();    
         await firebase.auth().signInWithRedirect(provider)
     }
 
     const signInAnon = async () => {
+        setUser(false)
         const {user} = await firebase.auth().signInAnonymously()
         makeHabitsForAnons(user.uid)
     }
