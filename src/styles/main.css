@@ -22,6 +22,18 @@ body {
 
 
 
+@media screen and (max-width: 768px){
+  .day:nth-child(2) {
+    display: none !important;
+  }
+
+  .day:nth-child(1) {
+    display: none !important;
+  }
+}
+
+
+
 
 /*//Reach List*/
 
@@ -189,5 +201,37 @@ body {
   } 100% { 
     transform: rotate(-360deg);
     -webkit-transform: rotate(-360deg);
+  }
+}
+
+
+
+/*Reach Modal*/
+
+:root {
+  --reach-dialog: 1;
+}
+
+[data-reach-dialog-overlay] {
+  background: hsla(0, 0%, 0%, 0.33);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+}
+
+[data-reach-dialog-content] {
+  width: 90vw;
+  margin: 10vh auto;
+  background: white;
+  padding: 2rem;
+  outline: none;
+}
+
+@media screen and (min-width: 500px){
+  [data-reach-dialog-content] {
+    width: 50vw;
   }
 }

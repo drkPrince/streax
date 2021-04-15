@@ -15,7 +15,9 @@ const firebaseConfig = {
 
 if( firebase.apps.length === 0 ){
 	firebase.initializeApp(firebaseConfig)
+	firebase.firestore().enablePersistence()
 }
+
 
 export const db = firebase.firestore()
 

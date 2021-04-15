@@ -48,7 +48,7 @@ const Calendar = ({highlight, color}) =>
 	const currentMonthCheckins = days.filter(c => c.highlight===true)
 
 	return (
-		<div className='grid grid-cols-12 gap-x-8'>
+		<div className='block md:grid grid-cols-12 gap-x-8'>
 			<div className='col-span-9 rounded py-5 px-8 text-center shadow-md' style={{background: 'var(--sec-bg)'}}>
 				<div className='my-3 text-2xl flex justify-between'>
 					<div className='text-sm text-gray-400 cursor-pointer' onClick={ () => setDate(new Date(date.setMonth(date.getMonth() - 1))) }>
@@ -63,41 +63,41 @@ const Calendar = ({highlight, color}) =>
 					</div>
 				</div>
 				<div>
-					<div className="weekDays flex justify-between text-gray-600 text-sm mt-8">
+					<div className="weekDays flex justify-between text-gray-600 text-xs md:text-sm mt-8">
 						{weekDays.map(wd => <h1 key={wd} style={{width: '14.285%'}}>{wd}</h1>)}
 					</div>
 					<div className='flex justify-start flex-wrap mt-5'>
 						{days.map((d, i)=> {
 							return d.highlight ? 	
 								<div key={i} style={{width: '14.285%'}} className='text-white flex justify-center items-center my-2 opacity-90'>
-									<h2 className={`bg-${color}-dark rounded-full w-10 h-10 flex justify-center items-center`}>{d.day}</h2>
+									<h2 className={`bg-${color}-dark rounded-full w-8 md:w-10 h-8 md:h-10 flex justify-center items-center text-sm md:text-base`}>{d.day}</h2>
 								</div> 
 								:
 								<div key={i} style={{width: '14.285%'}} className={`my-2 ${d.currentMonth ? '' : 'opacity-0'} flex justify-center items-center`}>
-									<h2 className={`border border-${color}-800 opacity-50 rounded-full w-10 h-10 flex justify-center items-center text-gray-600`}>{d.day}</h2>
+									<h2 className={`border border-${color}-800 opacity-50 rounded-full w-8 md:w-10 h-8 md:h-10 flex justify-center items-center text-gray-600 text-sm md:text-base`}>{d.day}</h2>
 								</div>
 						})}
 					</div>
 				</div>
 			</div>
 
-			<div className="col-span-3 px-8 py-8 rounded text-center shadow-md" style={{background: 'var(--sec-bg)'}}>
+			<div className="mt-6 md:mt-0 col-span-3 px-3 md:px-8 py-8 rounded text-center shadow-md" style={{background: 'var(--sec-bg)'}}>
 				<h1 className='text-gray-600 bold tracking-wider text-base flex justify-center'>
 					<svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
 					Monthly Report
 				</h1>
-				<div className="flex flex-col">
-					<div className='mt-16'>
-						<h1 className='text-gray-600 text-sm bold uppercase tracking-widest'>Scheduled Checkins</h1>
-						<h1 className={`text-${color}-dark text-5xl`}>{lastDateOfCurrentMonth}</h1>
+				<div className="flex flex-row justify-around md:justify-start md:flex-col">
+					<div className='mt-8 md:mt-16'>
+						<h1 className='text-gray-600 text-xs md:text-sm bold uppercase tracking-widest'>Scheduled Checkins</h1>
+						<h1 className={`text-${color}-dark text-2xl md:text-5xl`}>{lastDateOfCurrentMonth}</h1>
 					</div>
-					<div className='mt-16'>
-						<h1 className='text-gray-600 text-sm bold uppercase tracking-widest'>Completed Checkins</h1>
-						<h1 className={`text-${color}-dark text-5xl`}>{currentMonthCheckins.length}</h1>
+					<div className='mt-8 md:mt-16'>
+						<h1 className='text-gray-600 text-xs md:text-sm bold uppercase tracking-widest'>Completed Checkins</h1>
+						<h1 className={`text-${color}-dark text-2xl md:text-5xl`}>{currentMonthCheckins.length}</h1>
 					</div>
-					<div className='mt-16'>
-						<h1 className='text-gray-600 text-sm bold uppercase tracking-widest'>Completion Rate</h1>
-						<h1 className={`text-${color}-dark text-5xl`}>{Math.round((currentMonthCheckins.length/lastDateOfCurrentMonth)*100)}%</h1>
+					<div className='mt-8 md:mt-16'>
+						<h1 className='text-gray-600 text-xs md:text-sm bold uppercase tracking-widest'>Completion Rate</h1>
+						<h1 className={`text-${color}-dark text-2xl md:text-5xl`}>{Math.round((currentMonthCheckins.length/lastDateOfCurrentMonth)*100)}%</h1>
 					</div>
 				</div>
 			</div>
