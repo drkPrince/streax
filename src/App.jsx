@@ -36,7 +36,7 @@ export default function App()
                                 <a className='text-sm hidden md:block' href="https://github.com/drkPrince/streax" target='_blank' rel="noreferrer">Github</a>
                             </div>
                             <div onClick={()=>setModal(true)} className='flex hover:bg-green-900 transition-all duration-300 hover:text-white px-3 py-1 text-sm rounded-full text-gray-400 items-center'>
-                                <svg className="w-7 h-7 mr-2 fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" /></svg>
+                                <svg className="w-7 h-7 mr-0 md:mr-2 fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" /></svg>
                                 <h3 className='text-sm hidden md:block'>Add Habit</h3>
                             </div>
                         </div>

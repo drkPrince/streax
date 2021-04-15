@@ -3,6 +3,11 @@ import {format} from 'date-fns'
 
 const Calendar = ({highlight, color}) => 
 {
+
+	const bg = `bg-${color}-dark`
+    const border = `border-${color}-dark`
+    const text = `text-${color}-dark`
+
 	const [date, setDate] = useState(new Date())
 
 	const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
@@ -70,11 +75,11 @@ const Calendar = ({highlight, color}) =>
 						{days.map((d, i)=> {
 							return d.highlight ? 	
 								<div key={i} style={{width: '14.285%'}} className='text-white flex justify-center items-center my-2 opacity-90'>
-									<h2 className={`bg-${color}-dark rounded-full w-8 md:w-10 h-8 md:h-10 flex justify-center items-center text-sm md:text-base`}>{d.day}</h2>
+									<h2 className={`${bg} rounded-full w-8 md:w-10 h-8 md:h-10 flex justify-center items-center text-sm md:text-base`}>{d.day}</h2>
 								</div> 
 								:
 								<div key={i} style={{width: '14.285%'}} className={`my-2 ${d.currentMonth ? '' : 'opacity-0'} flex justify-center items-center`}>
-									<h2 className={`border border-${color}-800 opacity-50 rounded-full w-8 md:w-10 h-8 md:h-10 flex justify-center items-center text-gray-600 text-sm md:text-base`}>{d.day}</h2>
+									<h2 className={`border ${border} opacity-50 rounded-full w-8 md:w-10 h-8 md:h-10 flex justify-center items-center text-gray-600 text-sm md:text-base`}>{d.day}</h2>
 								</div>
 						})}
 					</div>
@@ -89,15 +94,15 @@ const Calendar = ({highlight, color}) =>
 				<div className="flex flex-row justify-around md:justify-start md:flex-col">
 					<div className='mt-8 md:mt-16'>
 						<h1 className='text-gray-600 text-xs md:text-sm bold uppercase tracking-widest'>Scheduled Checkins</h1>
-						<h1 className={`text-${color}-dark text-2xl md:text-5xl`}>{lastDateOfCurrentMonth}</h1>
+						<h1 className={`${text} text-2xl md:text-5xl`}>{lastDateOfCurrentMonth}</h1>
 					</div>
 					<div className='mt-8 md:mt-16'>
 						<h1 className='text-gray-600 text-xs md:text-sm bold uppercase tracking-widest'>Completed Checkins</h1>
-						<h1 className={`text-${color}-dark text-2xl md:text-5xl`}>{currentMonthCheckins.length}</h1>
+						<h1 className={`${text} text-2xl md:text-5xl`}>{currentMonthCheckins.length}</h1>
 					</div>
 					<div className='mt-8 md:mt-16'>
 						<h1 className='text-gray-600 text-xs md:text-sm bold uppercase tracking-widest'>Completion Rate</h1>
-						<h1 className={`text-${color}-dark text-2xl md:text-5xl`}>{Math.round((currentMonthCheckins.length/lastDateOfCurrentMonth)*100)}%</h1>
+						<h1 className={`${text} text-2xl md:text-5xl`}>{Math.round((currentMonthCheckins.length/lastDateOfCurrentMonth)*100)}%</h1>
 					</div>
 				</div>
 			</div>

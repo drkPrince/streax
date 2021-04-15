@@ -4,7 +4,6 @@ import CheckIn from './CheckIn'
 import {motion} from 'framer-motion'
 import {Link} from 'react-router-dom'
 
-
 import Tooltip from "@reach/tooltip";
 import "@reach/tooltip/styles.css";
 
@@ -32,7 +31,7 @@ const Habit = ({habit, user}) =>
                     {(streak.currentStreak===streak.longestStreak) && streak.currentStreak!==0
                         ? 
                         <Tooltip label="This is your best streak yet. Keep going!">
-                            <svg className="w-2 md:w-5 ml-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                            <svg className="w-3 h-3 md:w-5 md:h-5 ml-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                         </Tooltip>
                         :
                          ''}
@@ -55,6 +54,9 @@ const Habit = ({habit, user}) =>
 const renderDates = (completedDates, color) => 
 {
 
+    const bg = `bg-${color}-dark`
+    const border = `border-${color}-dark`
+
     const popVariant = {
         hidden: {opacity: 0, scale: 1},
         visible: {opacity: 1, scale: [1.7, 1], transition: {type: 'spring', duration: 0.4}}
@@ -74,21 +76,21 @@ const renderDates = (completedDates, color) =>
                 itsToday ? 
                     <div key={d} className='flex flex-col justify-center items-center mt-2 day'>
                         {day}
-                        <motion.p className={`bg-${color}-dark rounded-full text-xs md:text-sm w-6 md:w-10 h-6 md:h-10 flex items-center justify-center text-white`} variants={popVariant} initial='hidden' animate='visible'>
+                        <motion.p className={`${bg} rounded-full text-xs md:text-sm w-6 md:w-10 h-6 md:h-10 flex items-center justify-center text-white`} variants={popVariant} initial='hidden' animate='visible'>
                             <svg className='w-4 md:w-6' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill='white'/></svg>
                         </motion.p>
                     </div>
                     : 
                     <div key={d} className='flex flex-col justify-center items-center mt-2 opacity-90 day'>
                         {day}
-                        <p className={`bg-${color}-dark rounded-full text-sm md:text-base w-6 md:w-10 h-6 md:h-10 flex items-center justify-center text-white`}>
+                        <p className={`${bg} rounded-full text-sm md:text-base w-6 md:w-10 h-6 md:h-10 flex items-center justify-center text-white`}>
                             <span className='text-xs md:text-base'>{format(d, 'd')}</span>
                         </p>
                     </div>
             : 
                 <div key={d} className='flex flex-col justify-center items-center mt-2 opacity-95 day'>
                     {day}
-                    <p className={`border  border-${color}-dark text-gray-700 rounded-full text-sm md:text-base w-6 md:w-10 h-6 md:h-10 flex items-center justify-center`}>
+                    <p className={`border ${border} text-gray-700 rounded-full text-sm md:text-base w-6 md:w-10 h-6 md:h-10 flex items-center justify-center`}>
                         <span className='text-xs md:text-base'>{format(d, 'd')}</span>
                     </p>
                 </div>
