@@ -15,20 +15,18 @@ const useAuth = () =>
                     .set(userDataToBeStored, {merge: true})
                 setUser(user) 
             }
-            else setUser(null)
+            else setUser(false)
         })
     }, [])
 
     const logOut = () => firebase.auth().signOut()
 
     const signInWithGoogle = async () => {
-        setUser(false)
         const provider = new firebase.auth.GoogleAuthProvider();    
         await firebase.auth().signInWithRedirect(provider)
     }
 
     const signInAnon = async () => {
-        setUser(false)
         const {user} = await firebase.auth().signInAnonymously()
         makeHabitsForAnons(user.uid)
     }

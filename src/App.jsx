@@ -16,16 +16,16 @@ export default function App()
 
     const [modal, setModal] = useState(false)
 
-    if(user===null) return <LoginScreen signInWithGoogle={signInWithGoogle} signInAnon={signInAnon}/>
-
-    else if(user===false) {
+    if(user===null) {
         return (
             <div className="spinner">
                 <div className="cube1"></div>
                 <div className="cube2"></div>
             </div>
-            )
+        )
     }   
+
+    else if(user===false) return <LoginScreen signInWithGoogle={signInWithGoogle} signInAnon={signInAnon}/>
 
     else return (
         <div className="overflow-hidden min-h-screen" style={{background: 'var(--main-bg)'}}>
