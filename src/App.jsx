@@ -18,9 +18,15 @@ export default function App()
 
     if(user===null) {
         return (
-            <div className="spinner">
-                <div className="cube1"></div>
-                <div className="cube2"></div>
+            <div className='min-h-screen'>
+                <div class="sk-chase mx-auto mt-24">
+                  <div class="sk-chase-dot"></div>
+                  <div class="sk-chase-dot"></div>
+                  <div class="sk-chase-dot"></div>
+                  <div class="sk-chase-dot"></div>
+                  <div class="sk-chase-dot"></div>
+                  <div class="sk-chase-dot"></div>
+                </div>
             </div>
         )
     }   

@@ -106,9 +106,15 @@ const Banner = ({completed, total, username}) =>
 
 const Loader = () => {
     return (
-        <div className="spinner">
-          <div className="cube1"></div>
-          <div className="cube2"></div>
+        <div className='min-h-screen'>
+            <div class="sk-chase mx-auto my-auto">
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+            </div>
         </div>
     )
 }
