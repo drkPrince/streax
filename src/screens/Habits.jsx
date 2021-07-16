@@ -134,10 +134,10 @@ const Habits = ({ user, modal, setModal }) => {
                     </form>
                 </Dialog>
                 <Banner
-                    className="text-base md:text-2xl "
+                    className="text-base md:text-2xl"
                     total={habits.length}
                     completed={completed}
-                    username={user.displayName || "Captain"}
+                    username={user.displayName || ""}
                 />
                 {habits.map((habit) => (
                     <Habit habit={habit} user={user} key={habit.name} />
@@ -155,13 +155,13 @@ const Banner = ({ completed, total, username }) => {
     if (completed === 0) {
         return (
             <p className="text-yellow-800 text-center mb-8">
-                No habits checked-in yet, {name}.
+                No habits checked-in yet.
             </p>
         );
     } else if (completed === total) {
         return (
             <p className="text-green-400 text-center mb-8">
-                Gr8! Everything checked-in, {name}.
+                Great! Everything checked-in.
             </p>
         );
     }
