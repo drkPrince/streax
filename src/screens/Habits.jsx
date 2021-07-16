@@ -137,7 +137,6 @@ const Habits = ({ user, modal, setModal }) => {
                     className="text-base md:text-2xl"
                     total={habits.length}
                     completed={completed}
-                    username={user.displayName || ""}
                 />
                 {habits.map((habit) => (
                     <Habit habit={habit} user={user} key={habit.name} />
@@ -149,9 +148,7 @@ const Habits = ({ user, modal, setModal }) => {
     );
 };
 
-const Banner = ({ completed, total, username }) => {
-    const name = username.split(" ")[0];
-
+const Banner = ({ completed, total }) => {
     if (completed === 0) {
         return (
             <p className="text-yellow-800 text-center mb-8">
