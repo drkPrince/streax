@@ -3,17 +3,7 @@
 
 :root {
   --main-bg: #000510;
-  /*--sec-bg: #010107;*/
   --sec-bg: #010715;
-}
-
-@font-face {
-  font-family: Monu;
-  src: url("./Monument.otf");
-}
-
-.monu {
-  font-family: Monu;
 }
 
 .sp {
