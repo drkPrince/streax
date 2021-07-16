@@ -3,7 +3,7 @@ import 'firebase/auth'
 import 'firebase/firestore'
 
 const firebaseConfig = {
-	apiKey: "AIzaSyC3MaT5wlZunr3dsTiA_juZIgCxGa_zqnM",
+	apiKey: process.env.REACT_APP_FIREBASE_KEY,
 	authDomain: "streax-40b8d.firebaseapp.com",
 	projectId: "streax-40b8d",
 	storageBucket: "streax-40b8d.appspot.com",
